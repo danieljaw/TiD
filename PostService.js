@@ -14,17 +14,12 @@ class PostService {
       res.status(500).json(e);
     }
   }
-  async getOne(req, res) {
-    try {
-      const { id } = req.params;
-      if (!id) {
-        res.status(400).json({ message: "ID not specified " });
-      }
-      const post = await Post.findById(id);
-      return res.json(post);
-    } catch (e) {
-      res.status(500).json(e);
+  async getOne(id) {
+    if (!id) {
+      throw new Error("ID not specified");
     }
+    const post = await Post.findById(id);
+    return post;
   }
   async update(req, res) {
     try {
