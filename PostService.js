@@ -27,7 +27,7 @@ class PostService {
     return updatedPost;
   }
   async delete(id) {
-    if (!post._id) {
+    if (!id) {
       throw new Error("ID not specified");
     }
     const post = await Post.findByIdAndDelete(id);
